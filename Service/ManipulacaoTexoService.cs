@@ -1,6 +1,6 @@
 ﻿namespace DesafioTeiaBackEnd.Service
 {
-    public class ManipulacaoTexoService
+    public class ManipulacaoTexoService: IManipulacaoTexoService
     {
 
         public bool EhPalindromo(string texto)

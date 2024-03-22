@@ -1,3 +1,5 @@
+using DesafioTeiaBackEnd.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +21,11 @@ builder.Services.AddCors(options =>
 
 
 });
+
+builder.Services.AddControllers();
+// Outras configurações
+
+builder.Services.AddScoped<IManipulacaoTexoService, ManipulacaoTexoService>();
 
 var app = builder.Build();
 

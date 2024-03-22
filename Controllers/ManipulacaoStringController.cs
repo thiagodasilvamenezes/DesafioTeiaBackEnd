@@ -9,7 +9,12 @@ namespace DesafioTeiaBackEnd.Controllers
     [ApiController]
     public class ManipulacaoStringController : ControllerBase
     {
-        private readonly ManipulacaoTexoService _textoService = new ManipulacaoTexoService();
+        private readonly IManipulacaoTexoService _textoService = new ManipulacaoTexoService();
+        
+        public ManipulacaoStringController(IManipulacaoTexoService textoService)
+        {
+            _textoService = textoService ?? throw new ArgumentNullException(nameof(textoService));
+        }
 
         [HttpPost]
         public async Task<ActionResult<ManipulacaoStringResponse>> PostAsync([FromBody] ManipulacaoStringRequest request)
