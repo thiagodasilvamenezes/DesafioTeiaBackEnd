@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "e804eefd-4716-4a2e-922a-9baf3ef67aba",
+		"name": "DesafioTeiaBack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2315653"
+	},
+	"item": [
+		{
+			"name": "http://projectaconsult.com.br/api/manipulacao-string",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status da resposta é 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta é um JSON válido\r",
+							"pm.test(\"Response must be valid and have a JSON body\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"// Verifica se \"palindromo\" é true para a string \"ana\"\r",
+							"pm.test(\"Response body has palindromo as true for 'ana'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.palindromo).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Character occurrences are correct for 'ana'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    // Corrigindo o nome da propriedade para corresponder à resposta da API\r",
+							"    pm.expect(jsonData).to.have.property('ocorrenciasCaracteres');\r",
+							"    var ocorrencias = jsonData.ocorrenciasCaracteres;\r",
+							"    pm.expect(ocorrencias['a']).to.eql(2);\r",
+							"    pm.expect(ocorrencias['n']).to.eql(1);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"texto\": \"ana\"\r\n}"
+				},
+				"url": {
+					"raw": "http://projectaconsult.com.br/api/manipulacao-string",
+					"protocol": "http",
+					"host": [
+						"projectaconsult",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"manipulacao-string"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

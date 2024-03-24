@@ -5,8 +5,10 @@ using DesafioTeiaBackEnd.Service; // Use o namespace correto
 using DesafioTeiaBackEnd.Controllers;
 using DesafioTeiaBackEnd.Model;
 
+
 namespace DesafioTeiaBackEnd.Tests
 {
+
     public class ManipulacaoStringControllerTests
     {
         private readonly Mock<IManipulacaoTexoService> _mockService;
@@ -23,6 +25,7 @@ namespace DesafioTeiaBackEnd.Tests
         [InlineData("ana", true, new char[] { 'a', 'n' }, new int[] { 2, 1 })]
         [InlineData("", true, new char[] { }, new int[] { })]
         [InlineData("!@#$$#@!", true, new char[] { '!', '@', '#', '$' }, new int[] { 2, 2, 2, 2 })]
+  
         public async Task PostAsync_HandlesVariousInputs(string input, bool isPalindrome, char[] chars, int[] counts)
         {
             // Arrange
